@@ -26,7 +26,7 @@ export default defineStore({
 			
 			return fetch(baseUrl + '&token=' + await this.token).then(async response => {
 				return response.json().then(async json => {
-					if (json.response_code === 3) {
+					if (json.response_code === 3 || json.response_code === 4) {
 						localStorage.removeItem('opentdb.token');
 						return fetch(baseUrl + '&token=' + await this.token).then(function(response) {
 							return response.json().then(function(json) {
