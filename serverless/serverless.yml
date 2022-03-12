@@ -1,0 +1,56 @@
+service: serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  inscription:
+    handler: functions/users/inscription/handler.inscription
+    events:
+      - httpApi:
+          method: post
+          path: /inscription
+
+  connexion:
+    handler: functions/users/connexion/handler.connexion
+    events:
+      - httpApi:
+          method: get
+          path: /connexion
+
+  editionprofil:
+    handler: functions/users/editionprofil/handler.editionprofil
+    events:
+      - httpApi:
+          method: put
+          path: /editionprofil
+
+  desinscription:
+    handler: functions/users/desinscription/handler.desinscription
+    events:
+      - httpApi:
+          method: delete
+          path: /desinscription
+
+  ajoutstat:
+    handler: functions/stats/ajoutstat/handler.ajoutstat
+    events:
+      - httpApi:
+          method: post
+          path: /ajoutstat
+
+  listestats:
+    handler: functions/stats/listestats/handler.listestats
+    events:
+      - httpApi:
+          method: get
+          path: /listestats
+          
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 2022

@@ -1,0 +1,25 @@
+{
+	"name": "qwestion-serverless",
+	"version": "1.0.0",
+	"description": "Qwestion serverless",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FrancoisBasset/Qwestion.git"
+	},
+	"keywords": [
+		"qwestion",
+		"serverless"
+	],
+	"author": "FrancoisBasset",
+	"bugs": {
+		"url": "https://github.com/FrancoisBasset/Qwestion/issues"
+	},
+	"homepage": "https://github.com/FrancoisBasset/Qwestion#readme",
+	"devDependencies": {
+		"@types/node": "^17.0.21"
+	},
+	"dependencies": {
+		"sqlite3": "^5.0.2",
+		"uuid": "^8.3.2"
+	}
+}
