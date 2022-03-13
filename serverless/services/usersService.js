@@ -4,12 +4,12 @@ const uuid = require('uuid').v4;
 const db = new sqlite3.Database('database/qwestion.db');
 
 module.exports = class UsersService {
-	static inscription(username, password, firstname, lastname, wallpaper, callback) {
+	static inscription(username, password, firstname, lastname, callback) {
 		db.get('SELECT id FROM users WHERE username = ?', username, function(err, res) {
 			if (res) {
 				callback(false);
 			} else {
-				db.run('INSERT INTO users(username, password, firstname, lastname, wallpaper) VALUES(?, ?, ?, ?, ?)', username, password, firstname, lastname, wallpaper);
+				db.run('INSERT INTO users(username, password, firstname, lastname) VALUES(?, ?, ?, ?)', username, password, firstname, lastname);
 
 				callback(true);
 			}
