@@ -10,7 +10,7 @@ module.exports.connexion = async function(event) {
 			function(res) {
 				if (res) {
 					resolve({
-						statusCode: 201,
+						statusCode: 200,
 						body: JSON.stringify(res)
 					});
 				} else {
