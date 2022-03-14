@@ -24,7 +24,9 @@ module.exports = class UsersService {
 				db.run('UPDATE users SET token = ? WHERE username = ?', token, username);
 
 				res.token = token;
-				res.wallpaper = Buffer.from(res.wallpaper).toString('base64');
+				if (res.wallpaper) {
+					res.wallpaper = Buffer.from(res.wallpaper).toString('base64');
+				}
 			}
 			
 			callback(res);
@@ -32,9 +34,14 @@ module.exports = class UsersService {
 	}
 
 	static editionprofil(token, params, callback) {
+		if (params.wallpaper) {
+			params.wallpaper = Buffer.from(params.wallpaper, 'base64');
+		}
+
 		const sql = 'UPDATE users SET ' + Object.keys(params).reduce(function(a, b) {
-			return a + b + ' = ?';
-		}, '') + ' WHERE token = ?';
+			a.push(b + ' = ?');
+			return a;
+		}, []).join(', ') + ' WHERE token = ?';
 		
 		db.run(sql, [...Object.values(params), token], callback);
 	}
