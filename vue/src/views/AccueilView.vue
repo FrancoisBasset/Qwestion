@@ -35,6 +35,35 @@
 
 			<input type="password" v-model="form.edit.password">
 			<button @click="changePassword()">Reinitialiser mot de passe</button>
+			<br><br>
+
+			<button @click="addStat()">Ajouter stat</button>
+			<br><br>
+			<button @click="showStats()">Liste des stats</button>
+			<br><br>
+
+			<table>
+				<thead>
+					<tr>
+						<td>Date</td>
+						<td>Api</td>
+						<td>Categorie</td>
+						<td>Difficulté</td>
+						<td>Correct</td>
+						<td>Incorrect</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="stat in stats" :key="stat">
+						<td>{{ stat.date }}</td>
+						<td>{{ stat.api }}</td>
+						<td>{{ stat.category }}</td>
+						<td>{{ stat.difficulty }}</td>
+						<td>{{ stat.correct }}</td>
+						<td>{{ stat.incorrect }}</td>
+					</tr>
+				</tbody>
+			</table>
 
 			<button @click="logout()">Déconnexion</button><br><br>
 
@@ -73,6 +102,7 @@
 import useOpentdb from '../stores/opentdb';
 import useApisstore from '../stores/apisstore';
 import useAccountStore from '../stores/account';
+import useStatsStore from '../stores/stats';
 </script>
 
 <script>
@@ -85,6 +115,7 @@ export default {
 			opentdb: useOpentdb(),
 			apisstore: useApisstore(),
 			accountStore: useAccountStore(),
+			statsStore: useStatsStore(),
 
 			form: {
 				register: {
@@ -110,7 +141,9 @@ export default {
 				}
 			},
 			registerStatus: null,
-			loginStatus: null
+			loginStatus: null,
+
+			stats: null
 		};
 	},
 	async created() {
@@ -175,6 +208,13 @@ export default {
 		},
 		deleteAccount() {
 			this.accountStore.delete(this.accountStore.user ? null : this.form.delete.username);
+		},
+		addStat() {
+			this.statsStore.addStat('opentdb', 'history', 'easy', 10, 0);
+		},
+		async showStats() {
+			this.statsStore.$reset();
+			this.stats = await this.statsStore.getStats();
 		}
 	}
 }
