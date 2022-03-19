@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import RegisterButton from '../components/RegisterButton.vue';
-import LoginButton from '../components/LoginButton.vue';
-import ProfileIcon from '../components/ProfileIcon.vue';
+import RegisterButton from './RegisterButton.vue';
+import LoginButton from './LoginButton.vue';
+import ProfileIcon from './ProfileIcon.vue';
 </script>
 
 <script>

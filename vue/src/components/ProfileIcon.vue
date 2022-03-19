@@ -27,7 +27,7 @@ label {
 </style>
 
 <script setup>
-import ProfileModal from '../components/ProfileModal.vue';
+import ProfileModal from './ProfileModal.vue';
 </script>
 
 <script>

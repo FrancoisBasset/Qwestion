@@ -13,9 +13,9 @@ div {
 </style>
 
 <script setup>
-import QuizSelect from '../components/QuizSelect.vue';
-import Logo from '../components/Logo.vue';
-import ProfileZone from '../components/ProfileZone.vue';
+import QuizSelect from './QuizSelect.vue';
+import Logo from './Logo.vue';
+import ProfileZone from './ProfileZone.vue';
 </script>
 
 <script>
