@@ -1,6 +1,6 @@
 <template>
 	<div v-if="accountStore.user">
-		<ProfileIcon firstname="François" lastname="Basset" />
+		<ProfileIcon :firstname="accountStore.user.firstname" :lastname="accountStore.user.lastname" />
 	</div>
 	<div v-else>
 		<RegisterButton />
@@ -21,7 +21,7 @@ export default {
 	components: { RegisterButton, LoginButton, ProfileIcon },
 	data() {
 		return {
-			accountStore: useAccountStore
+			accountStore: useAccountStore()
 		};
 	}
 }

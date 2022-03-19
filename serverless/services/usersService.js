@@ -38,10 +38,12 @@ module.exports = class UsersService {
 			params.wallpaper = Buffer.from(params.wallpaper, 'base64');
 		}
 
-		const sql = 'UPDATE users SET ' + Object.keys(params).reduce(function(a, b) {
-			a.push(b + ' = ?');
+		const sqlParams = Object.keys(params).reduce(function(a, b) {
+			a.push(`${b} = ?`);
 			return a;
-		}, []).join(', ') + ' WHERE token = ?';
+		}, []).join(', ');
+
+		const sql = `UPDATE users SET ${sqlParams} WHERE token = ?`;
 		
 		db.run(sql, [...Object.values(params), token], callback);
 	}

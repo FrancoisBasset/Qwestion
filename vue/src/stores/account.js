@@ -34,7 +34,7 @@ export default defineStore({
 		async login(username, password) {
 			return fetch('http://localhost:2022/connexion', {
 				headers: {
-					Authorization: 'Basic ' + btoa(username + ':' + await hashPassword(password))
+					Authorization: `Basic ${btoa(`${username}:${await hashPassword(password)}`)}}`
 				}
 			}).then(response => {
 				if (response.status === 200) {
@@ -60,7 +60,7 @@ export default defineStore({
 
 			return fetch('http://localhost:2022/editionprofil', {
 				headers: {
-					Authorization: 'Bearer ' + this.user.token
+					Authorization: `Bearer ${this.user.token}`
 				},
 				method: 'PUT',
 				body: JSON.stringify(body)
@@ -79,7 +79,7 @@ export default defineStore({
 		async changePassword(password) {
 			return fetch('http://localhost:2022/editionprofil', {
 				headers: {
-					Authorization: 'Bearer ' + this.user.token
+					Authorization: `Bearer ${this.user.token}`
 				},
 				method: 'PUT',
 				body: JSON.stringify({
@@ -95,7 +95,7 @@ export default defineStore({
 			return fetch('http://localhost:2022/desinscription', {
 				method: 'DELETE',
 				headers: {
-					Authorization: 'Bearer ' + (username ?? this.user.username)
+					Authorization: `Bearer ${(username ?? this.user.username)}`
 				}
 			}).then(() => {
 				this.logout();

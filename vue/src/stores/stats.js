@@ -13,7 +13,7 @@ export default defineStore({
 			fetch('http://localhost:2022/ajoutstat', {
 				method: 'POST',
 				headers: {
-					Authorization: 'Bearer ' + this.user.token
+					Authorization: `Bearer ${this.user.token}`
 				},
 				body: JSON.stringify({
 					date: new Date(),
@@ -28,7 +28,7 @@ export default defineStore({
 		getStats() {
 			return fetch('http://localhost:2022/listestats', {
 				headers: {
-					Authorization: 'Bearer ' + this.user.token
+					Authorization: `Bearer ${this.user.token}`
 				}
 			}).then(function(response) {
 				return response.json().then(function(json) {

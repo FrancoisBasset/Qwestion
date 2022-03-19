@@ -1,6 +1,6 @@
 <template>
 	<div class='dropdown'>
-		<label @click="openProfileModal()" :style="style" >{{ firstname[0] + lastname[0] }}</label>
+		<label :style="style" >{{ firstname[0] + lastname[0] }}</label>
 		<ProfileModal class="dropdown-content" />
 	</div>
 </template>
@@ -42,7 +42,7 @@ export default {
 	props: ['firstname', 'lastname'],
 	data() {
 		return {
-			style: 'font-size: 25px; font-weight: bold;  padding: 20px; background-color: rgb('+r+', '+g+', '+b+'); border-radius: 50%;'
+			style: `font-size: 25px; font-weight: bold;  padding: 20px; background-color: rgb(${r}, ${g}, ${b}); border-radius: 50%`
 		};
 	}
 }
