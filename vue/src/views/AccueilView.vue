@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<div v-if="!accountStore.user">
+		<Header />
+		<!--<div v-if="!accountStore.user">
 			<label>Username : </label><input type="text" v-model="form.register.username">
 			<label>Password :</label><input type="password" v-model="form.register.password">
 			<label>Firstname :</label><input type="text" v-model="form.register.firstname">
@@ -94,11 +95,12 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>
+		</table>-->
 	</div>
 </template>
 
 <script setup>
+import Header from '../components/Header.vue';
 import useOpentdb from '../stores/opentdb';
 import useApisstore from '../stores/apisstore';
 import useAccountStore from '../stores/account';
@@ -107,6 +109,9 @@ import useStatsStore from '../stores/stats';
 
 <script>
 export default {
+	components: {
+		Header
+	},
 	data() {
 		return {
 			token: '',

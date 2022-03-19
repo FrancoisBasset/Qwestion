@@ -8,7 +8,11 @@ export default defineStore({
 	id: 'apisstore',
 	state: () => {
 		return {
-			currentApi: JSON.parse(localStorage.getItem('apisstore.currentApi')) ?? {},
+			currentApi: JSON.parse(localStorage.getItem('apisstore.currentApi')) ?? {
+				id: 'opentdb',
+				name: 'Open Trivia Database',
+				store: useOpentdb()
+			},
 			apis: [
 				{
 					id: 'opentdb',
@@ -29,8 +33,8 @@ export default defineStore({
 		};
 	},
 	actions: {
-		setCurrentApi(api) {
-			this.currentApi = this.apis.find(a => a.id === api);
+		setCurrentApi(apiId) {
+			this.currentApi = this.apis.find(api => api.id === apiId);
 			localStorage.setItem('apisstore.currentApi', JSON.stringify(this.currentApi));
 		}
 	}
