@@ -6,7 +6,7 @@
 		<label>Nom d'utilisateur : </label><input type="text" v-model="username" />
 		<br>
 		<br>
-		<label>Mot de passe : </label><input type="text" v-model="password" />
+		<label>Mot de passe : </label><input type="password" v-model="password" />
 		<br>
 		<br>
 		<button @click="login()" :disabled="!correctForm">Se connecter</button>
@@ -47,7 +47,7 @@ export default {
 			const status = await this.accountStore.login(this.username, this.password);
 
 			if (status === 200) {
-				router.push('home');
+				this.$router.push('/');
 			} else {
 				this.incorrectLogin = true;
 			}

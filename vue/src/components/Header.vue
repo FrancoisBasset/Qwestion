@@ -2,7 +2,7 @@
 	<div>
 		<QuizSelect />
 		<Logo id="logo" />
-		<ProfileZone />
+		<ProfileZone style="margin-right: 10px" />
 	</div>
 </template>
 

@@ -15,13 +15,14 @@ label {
 }
 
 .dropdown:hover .dropdown-content {
-	display: flex;
+	display: block;
 }
 
 .dropdown-content {
 	display: none;
 	position: absolute;
-	margin-top: 20px;
+	margin-top: 70px;
+	right: 0px;
 }
 </style>
 

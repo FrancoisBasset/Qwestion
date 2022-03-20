@@ -1,5 +1,5 @@
 <template>
 	<router-link to="connexion" >
-		<button>Se Connecter</button>
+		<button>Se connecter</button>
 	</router-link>
 </template>
