@@ -1,9 +1,11 @@
 <template>
-	<label>Qwestion</label>
+	<router-link to="/">
+		<label>Qwestion</label>
+	</router-link>
 </template>
 
 <style scoped>
-label {
+a, label {
 	color: greenyellow;
 	font-size: 44px;
 
@@ -11,5 +13,8 @@ label {
 
 	border-radius: 20px;
 	padding: 10px;
+
+	cursor: pointer;
+	text-decoration: none;
 }
 </style>
