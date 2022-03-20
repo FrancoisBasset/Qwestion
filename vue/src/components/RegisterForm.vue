@@ -23,12 +23,17 @@
 	</div>
 </template>
 
+<script setup>
+import RegisterModal from './RegisterModal.vue';
+</script>
+
 <script>
 import useAccountStore from '../stores/account';
-import RegisterModal from './RegisterModal.vue';
 
 export default {
-	components: { RegisterModal },
+	components: {
+		RegisterModal
+	},
 	data() {
 		return {
 			accountStore: useAccountStore(),

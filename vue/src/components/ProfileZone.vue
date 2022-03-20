@@ -18,7 +18,11 @@ import ProfileIcon from './ProfileIcon.vue';
 import useAccountStore from '../stores/account';
 
 export default {
-	components: { RegisterButton, LoginButton, ProfileIcon },
+	components: {
+		RegisterButton,
+		LoginButton,
+		ProfileIcon
+	},
 	data() {
 		return {
 			accountStore: useAccountStore()
