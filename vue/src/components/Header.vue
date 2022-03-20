@@ -1,14 +1,19 @@
 <template>
 	<div>
 		<QuizSelect />
-		<Logo />
+		<Logo id="logo" />
 		<ProfileZone />
 	</div>
 </template>
 
 <style>
 div {
-	display: inline;
+	display: flex;
+}
+
+#logo {
+	margin-left: auto;
+    margin-right: auto;
 }
 </style>
 

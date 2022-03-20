@@ -12,11 +12,10 @@ label {
 
 .dropdown {
 	position: relative;
-	display: inline-block;
 }
 
 .dropdown:hover .dropdown-content {
-	display: block;
+	display: flex;
 }
 
 .dropdown-content {
