@@ -1,5 +1,7 @@
 <template>
-	<button>Mon profil</button>
+	<router-link to="/monprofil">
+		<button>Mon profil</button>
+	</router-link>
 </template>
 
 <style scoped>

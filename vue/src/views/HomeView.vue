@@ -190,8 +190,7 @@ export default {
 						this.form.edit.firstname,
 						this.form.edit.lastname,
 						this.form.edit.quizApiToken,
-						this.form.edit.apiNinjasToken,
-						reader.result.substr(23)
+						this.form.edit.apiNinjasToken
 					).then(function() {
 						alert('Account updated !');
 					});

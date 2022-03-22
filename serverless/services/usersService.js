@@ -25,7 +25,7 @@ module.exports = class UsersService {
 
 				res.token = token;
 				if (res.wallpaper) {
-					res.wallpaper = Buffer.from(res.wallpaper).toString('base64');
+					res.wallpaper = 'data:image/jpeg;base64,' + Buffer.from(res.wallpaper).toString('base64');
 				}
 			}
 			
@@ -35,6 +35,7 @@ module.exports = class UsersService {
 
 	static editionprofil(token, params, callback) {
 		if (params.wallpaper) {
+			params.wallpaper = params.wallpaper.substr(23);
 			params.wallpaper = Buffer.from(params.wallpaper, 'base64');
 		}
 
