@@ -21,6 +21,7 @@ export default {
 		logout() {
 			this.accountStore.logout();
 			this.$router.push('/');
+			document.body.style.backgroundImage = '';
 		}
 	}
 }

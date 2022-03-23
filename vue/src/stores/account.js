@@ -52,11 +52,9 @@ export default defineStore({
 				firstname: firstname,
 				lastname: lastname,
 				quizApiToken: quizApiToken,
-				apiNinjasToken: apiNinjasToken
+				apiNinjasToken: apiNinjasToken,
+				wallpaper: wallpaper
 			};
-			if (wallpaper) {
-				body.wallpaper = wallpaper;
-			}
 
 			return fetch('http://localhost:2022/editionprofil', {
 				headers: {
@@ -69,9 +67,7 @@ export default defineStore({
 				this.user.lastname = lastname;
 				this.user.quizApiToken = quizApiToken;
 				this.user.apiNinjasToken = apiNinjasToken;
-				if (wallpaper) {
-					this.user.wallpaper = wallpaper;
-				}
+				this.user.wallpaper = wallpaper;
 				
 				localStorage.setItem('account.user', JSON.stringify(this.user));
 			});

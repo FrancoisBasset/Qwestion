@@ -47,6 +47,7 @@ export default {
 			const status = await this.accountStore.login(this.username, this.password);
 
 			if (status === 200) {
+				document.body.style.backgroundImage = `url(${this.accountStore.user.wallpaper})`;
 				this.$router.push('/');
 			} else {
 				this.incorrectLogin = true;
