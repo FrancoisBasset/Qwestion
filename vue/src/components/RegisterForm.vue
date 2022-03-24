@@ -18,10 +18,24 @@
 		<button @click="register()" :disabled="!correctForm">S'enregistrer</button>
 		<br>
 		<br>
+		<label>Mot de passe oublié ? Voulez-vous supprimer votre compte ?</label>
+		<br>
+		<br>
+		<input type="text" v-model="usernameToDelete" />
+		<br>
+		<br>
+		<button id="deleteAccountButton" @click="deleteAccount()">Supprimer compte</button>
 		
 		<RegisterModal v-show="status" @closeRegisterModal="status = null" :status="status" :username="readonlyUsername" />
 	</div>
 </template>
+
+<style scoped>
+#deleteAccountButton {
+	color: white;
+	background-color: red;
+}
+</style>
 
 <script setup>
 import RegisterModal from './RegisterModal.vue';
@@ -42,7 +56,8 @@ export default {
 			firstname: '',
 			lastname: '',
 			status: '',
-			readonlyUsername: ''
+			readonlyUsername: '',
+			usernameToDelete: ''
 		};
 	},
 	computed: {
@@ -62,6 +77,10 @@ export default {
 				this.firstname = '';
 				this.lastname = '';
 			}
+		},
+		async deleteAccount() {
+			await this.accountStore.delete(this.usernameToDelete);
+			this.usernameToDelete = '';
 		}
 	}
 }

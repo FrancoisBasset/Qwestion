@@ -32,6 +32,9 @@
 		<button @click="changePassword()">Modifier mon mot de passe</button>
 		<br>
 		<label id="message" ref="message">Modifications sauvegardés !</label>
+		<br>
+		<br>
+		<button id="deleteAccountButton" @click="deleteAccount()">!! Supprimer mon compte !!</button>
 	</div>
 </template>
 
@@ -54,6 +57,11 @@
 
 .visible {
 	visibility: visible;
+}
+
+#deleteAccountButton {
+	color: white;
+	background-color: red;
 }
 </style>
 
@@ -117,6 +125,10 @@ export default {
 			setTimeout(() => {
 				this.$refs.message.style.visibility = 'hidden';
 			}, 5000);
+		},
+		async deleteAccount() {
+			await this.accountStore.delete(this.accountStore.user.username);
+			this.$router.push('/');
 		}
 	}
 }
