@@ -1,3 +1,4 @@
+const Buffer = require('buffer').Buffer;
 const usersService = require('../../../services/usersService');
 
 module.exports.connexion = async function(event) {

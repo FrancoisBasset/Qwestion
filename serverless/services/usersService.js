@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3');
 const uuid = require('uuid').v4;
+const Buffer = require('buffer').Buffer;
 
 const db = new sqlite3.Database('database/qwestion.db');
 
@@ -52,4 +53,4 @@ module.exports = class UsersService {
 	static desinscription(username, callback) {
 		db.run('DELETE FROM users WHERE username = ?', username, callback);
 	}
-}
+};

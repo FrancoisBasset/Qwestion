@@ -11,4 +11,4 @@ module.exports.desinscription = async function(event) {
 			}
 		);
 	});
-}
+};
