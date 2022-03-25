@@ -8,6 +8,9 @@
 		<br>
 
 		<div style="display: block; text-align: center">
+			<img :src="apisStore.currentApi.store.image" width="300" height="100" />
+			<br>
+			<br>
 			<PlayButton style="width: 300px; height: 100px" />
 			<br>
 			<br>
@@ -23,11 +26,18 @@ import StatisticsButton from '../components/StatisticsButton.vue';
 </script>
 
 <script>
+import useApisStore from '../stores/apisstore';
+
 export default {
 	components: {
 		Header,
 		PlayButton,
 		StatisticsButton
+	},
+	data() {
+		return {
+			apisStore: useApisStore()
+		};
 	}
 }
 </script>
