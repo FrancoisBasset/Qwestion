@@ -15,7 +15,7 @@ export default {
 		};
 	},
 	created() {
-		this.apiId = this.apisStore.currentApi.id;
+		this.apiId = this.apisStore.getCurrentApi().id;
 	}
 }
 </script>

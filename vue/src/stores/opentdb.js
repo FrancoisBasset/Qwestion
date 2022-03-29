@@ -17,7 +17,7 @@ export default defineStore({
 			});
 		},
 		categories() {
-			return localStorage.getItem('opentdb.categories') ?? fetch('https://opentdb.com/api_category.php').then(function(res) {
+			return JSON.parse(localStorage.getItem('opentdb.categories')) ?? fetch('https://opentdb.com/api_category.php').then(function(res) {
 				return res.json().then(function(json) {
 					localStorage.setItem('opentdb.categories', JSON.stringify(json.trivia_categories));
 					return json.trivia_categories;
