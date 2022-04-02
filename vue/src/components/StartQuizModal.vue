@@ -12,7 +12,7 @@
 		<br>
 		<label>Catégorie : </label>
 		<select v-model="category">
-			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category">{{ category.name }}</option>
 		</select>
 		<br>
 		<br>
@@ -51,20 +51,28 @@ div {
 
 <script>
 import useApisStore from '../stores/apisstore';
+import useGameStore from '../stores/game';
 
 export default {
 	data() {
 		return {
 			apisStore: useApisStore(),
-			number: null,
-			category: 0,
+			number: 5,
+			category: null,
 			difficulty: 'easy',
-			type: 'multiple'
+			type: 'multiple',
+			gameStore: useGameStore(),
 		};
+	},
+	created() {
+		this.category = this.apisStore.getCurrentApi().store.categories[0];
 	},
 	methods: {
 		async play() {
-			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category, this.difficulty, this.type);
+			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category.id, this.difficulty, this.type);
+			this.gameStore.start(this.apisStore.getCurrentApi().name, this.category.name, this.difficulty, questions);
+
+			this.$router.push('/jouer');
 		},
 		closeModal() {
 			this.number = null;
