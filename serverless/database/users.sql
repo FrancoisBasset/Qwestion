@@ -5,7 +5,7 @@ CREATE TABLE "users" (
 	"firstname"	TEXT NOT NULL,
 	"lastname"	TEXT NOT NULL,
 	"token"	TEXT,
-	"quizAPiToken"	TEXT,
+	"quizApiToken"	TEXT,
 	"apiNinjasToken"	TEXT,
 	"wallpaper"	BLOB
 )
