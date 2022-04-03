@@ -127,7 +127,7 @@ export default {
 			}, 5000);
 		},
 		async deleteAccount() {
-			await this.accountStore.delete(this.accountStore.user.username);
+			await this.accountStore.delete();
 			this.$router.push('/');
 		}
 	}

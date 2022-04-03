@@ -47,6 +47,13 @@ functions:
       - httpApi:
           method: get
           path: /listestats
+
+  listeusers:
+    handler: functions/users/listeusers/handler.listeusers
+    events:
+      - httpApi:
+          method: get
+          path: /listeusers
           
 plugins:
   - serverless-offline

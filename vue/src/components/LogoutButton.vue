@@ -24,5 +24,5 @@ export default {
 			document.body.style.backgroundImage = '';
 		}
 	}
-}
+};
 </script>

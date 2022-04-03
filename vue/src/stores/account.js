@@ -94,7 +94,19 @@ export default defineStore({
 					Authorization: `Bearer ${(username ?? this.user.username)}`
 				}
 			}).then(() => {
-				this.logout();
+				if (!username) {
+					this.logout();
+				}
+			});
+		},
+		listusers() {
+			return fetch('http://localhost:2022/listeusers', {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${this.user.token}`
+				}
+			}).then(function(response) {
+				return response.json();
 			});
 		}
 	}

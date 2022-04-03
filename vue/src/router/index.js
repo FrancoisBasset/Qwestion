@@ -4,6 +4,7 @@ import RegisterView from '../views/RegisterView.vue';
 import LoginView from '../views/LoginView.vue';
 import MyProfileView from '../views/MyProfileView.vue';
 import PlayView from '../views/PlayView.vue';
+import AdminView from '../views/AdminView.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
 			path: '/jouer',
 			name: 'jouer',
 			component: PlayView
+		},
+		{
+			path: '/admin',
+			name: 'admin',
+			component: AdminView
 		}
 	]
 });

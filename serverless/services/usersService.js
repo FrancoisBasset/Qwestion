@@ -51,6 +51,29 @@ module.exports = class UsersService {
 	}
 
 	static desinscription(username, callback) {
-		db.run('DELETE FROM users WHERE username = ?', username, callback);
+		db.get('SELECT id FROM users WHERE username = ?', username, function(err, res) {
+			if (res) {
+				db.run('DELETE FROM users WHERE username = ?', username, callback);
+				db.run('DELETE FROM stats WHERE userId = ?', res.id, callback);
+			}
+		});
+	}
+
+	static listeusers(token, callback) {
+		db.get('SELECT id FROM users WHERE username = ? AND token = ?', 'admin', token, function(err, res) {
+			if (res) {
+				db.all('SELECT username, firstname, lastname, wallpaper FROM users', function(err, res) {
+					for (let r of res) {
+						if (r.wallpaper) {
+							r.wallpaper = 'data:image/jpeg;base64,' + Buffer.from(r.wallpaper).toString('base64');
+						}
+					}
+
+					callback(res);
+				});
+			} else {
+				callback(null);
+			}
+		});
 	}
 };
