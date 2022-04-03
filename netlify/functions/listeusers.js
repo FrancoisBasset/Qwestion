@@ -1,6 +1,6 @@
-const usersService = require('../../../services/usersService');
+const usersService = require('../services/usersService');
 
-module.exports.listeusers = async function(event) {
+module.exports.handler = async function(event) {
 	return new Promise(function(resolve) {
 		usersService.listeusers(event.headers.Authorization.substr(7), function(res) {
 			if (res) {

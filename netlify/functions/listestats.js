@@ -1,6 +1,6 @@
-const statsService = require('../../../services/statsService');
+const statsService = require('../services/statsService');
 
-module.exports.listestats = async function(event) {
+module.exports.handler = async function(event) {
 	return new Promise(function(resolve) {
 		statsService.listestats(event.headers.Authorization.substr(7), function(res) {
 			resolve({

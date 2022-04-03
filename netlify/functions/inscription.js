@@ -1,6 +1,6 @@
-const usersService = require('../../../services/usersService');
+const usersService = require('../services/usersService');
 
-module.exports.inscription = async function(event) {
+module.exports.handler = async function(event) {
 	const { username, password, firstname, lastname } = JSON.parse(event.body);
 
 	return new Promise(function(resolve) {
