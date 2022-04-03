@@ -1,6 +1,6 @@
-const statsService = require('../../../services/statsService');
+const statsService = require('../services/statsService');
 
-module.exports.ajoutstat = async function(event) {
+module.exports.handler = async function(event) {
 	const { date, api, category, difficulty, correct, incorrect } = JSON.parse(event.body);
 
 	return new Promise(function(resolve) {

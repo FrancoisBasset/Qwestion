@@ -1,6 +1,6 @@
-const usersService = require('../../../services/usersService');
+const usersService = require('../services/usersService');
 
-module.exports.editionprofil = function(event) {
+module.exports.handler = function(event) {
 	return new Promise(function(resolve) {
 		usersService.editionprofil(
 			event.headers.Authorization.substr(7),

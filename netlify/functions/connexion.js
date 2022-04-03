@@ -1,7 +1,7 @@
 const Buffer = require('buffer').Buffer;
-const usersService = require('../../../services/usersService');
+const usersService = require('../services/usersService');
 
-module.exports.connexion = async function(event) {
+module.exports.handler = async function(event) {
 	const basicAuth = Buffer.from(event.headers.Authorization.substr(6), 'base64').toString();
 
 	return new Promise(function(resolve) {
