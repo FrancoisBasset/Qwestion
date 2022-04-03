@@ -10,20 +10,22 @@ export default defineStore({
 	},
 	actions: {
 		addStat(api, category, difficulty, correct, incorrect) {
-			fetch('http://localhost:2022/ajoutstat', {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${this.user.token}`
-				},
-				body: JSON.stringify({
-					date: new Date(),
-					api: api,
-					category: category,
-					difficulty: difficulty,
-					correct: correct,
-					incorrect: incorrect
-				})
-			});
+			if (this.user) {
+				fetch('http://localhost:2022/ajoutstat', {
+					method: 'POST',
+					headers: {
+						Authorization: `Bearer ${this.user.token}`
+					},
+					body: JSON.stringify({
+						date: new Date(),
+						api: api,
+						category: category,
+						difficulty: difficulty,
+						correct: correct,
+						incorrect: incorrect
+					})
+				});
+			}
 		},
 		getStats() {
 			return fetch('http://localhost:2022/listestats', {
