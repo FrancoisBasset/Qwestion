@@ -7,49 +7,49 @@ provider:
 
 functions:
   inscription:
-    handler: functions/inscription/inscription.handler
+    handler: functions/inscription.handler
     events:
       - httpApi:
           method: post
           path: /inscription
 
   connexion:
-    handler: functions/connexion/connexion.handler
+    handler: functions/connexion.handler
     events:
       - httpApi:
           method: get
           path: /connexion
 
   editionprofil:
-    handler: functions/editionprofil/editionprofil.handler
+    handler: functions/editionprofil.handler
     events:
       - httpApi:
           method: put
           path: /editionprofil
 
   desinscription:
-    handler: functions/desinscription/desinscription.handler
+    handler: functions/desinscription.handler
     events:
       - httpApi:
           method: delete
           path: /desinscription
 
   ajoutstat:
-    handler: functions/ajoutstat/ajoutstat.handler
+    handler: functions/ajoutstat.handler
     events:
       - httpApi:
           method: post
           path: /ajoutstat
 
   listestats:
-    handler: functions/listestats/listestats.handler
+    handler: functions/listestats.handler
     events:
       - httpApi:
           method: get
           path: /listestats
 
   listeusers:
-    handler: functions/listeusers/listeusers.handler
+    handler: functions/listeusers.handler
     events:
       - httpApi:
           method: get
