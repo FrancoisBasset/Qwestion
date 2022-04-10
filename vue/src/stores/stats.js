@@ -14,7 +14,8 @@ export default defineStore({
 				fetch('http://localhost:2022/ajoutstat', {
 					method: 'POST',
 					headers: {
-						Authorization: `Bearer ${this.user.token}`
+						Authorization: `Bearer ${this.user.token}`,
+						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
 						date: new Date(),

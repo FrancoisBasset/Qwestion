@@ -21,6 +21,9 @@ export default defineStore({
 		async register(username, password, firstname, lastname) {
 			return fetch('http://localhost:2022/inscription', {
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 				body: JSON.stringify({
 					username: username,
 					password: await hashPassword(password),
@@ -58,7 +61,8 @@ export default defineStore({
 
 			return fetch('http://localhost:2022/editionprofil', {
 				headers: {
-					Authorization: `Bearer ${this.user.token}`
+					Authorization: `Bearer ${this.user.token}`,
+					'Content-Type': 'application/json'
 				},
 				method: 'PUT',
 				body: JSON.stringify(body)
