@@ -1,13 +1,9 @@
 const usersService = require('../services/usersService');
 
-module.exports.handler = async function(event) {
-	const { username, password, firstname, lastname } = JSON.parse(event.body);
-
-	return new Promise(function(resolve) {
-		usersService.inscription(username, password, firstname, lastname, function(success) {
-			resolve({
-				statusCode: success ? 201 : 400
-			});
-		});
+module.exports = function(req, res) {
+	const { username, password, firstname, lastname } = req.body;
+	
+	usersService.inscription(username, password, firstname, lastname, function(success) {
+		res.status(success ? 201 : 400).end();
 	});
 };

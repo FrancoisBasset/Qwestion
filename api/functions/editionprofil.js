@@ -1,15 +1,11 @@
 const usersService = require('../services/usersService');
 
-module.exports.handler = function(event) {
-	return new Promise(function(resolve) {
-		usersService.editionprofil(
-			event.headers.Authorization.substr(7),
-			JSON.parse(event.body),
-			function() {
-				resolve({
-					statusCode: 204
-				});
-			}
-		);
-	});
+module.exports = function(req, res) {
+	usersService.editionprofil(
+		req.headers.authorization.substr(7),
+		req.body,
+		function() {
+			res.status(204).end();
+		}
+	);
 };
