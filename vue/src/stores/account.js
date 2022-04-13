@@ -19,8 +19,11 @@ export default defineStore({
 	},
 	actions: {
 		async register(username, password, firstname, lastname) {
-			return fetch('http://localhost:2022/inscription', {
+			return fetch('/api/inscription', {
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 				body: JSON.stringify({
 					username: username,
 					password: await hashPassword(password),
@@ -32,7 +35,7 @@ export default defineStore({
 			});
 		},
 		async login(username, password) {
-			return fetch('http://localhost:2022/connexion', {
+			return fetch('/api/connexion', {
 				headers: {
 					Authorization: `Basic ${btoa(`${username}:${await hashPassword(password)}`)}}`
 				}
@@ -56,9 +59,10 @@ export default defineStore({
 				wallpaper: wallpaper
 			};
 
-			return fetch('http://localhost:2022/editionprofil', {
+			return fetch('/api/editionprofil', {
 				headers: {
-					Authorization: `Bearer ${this.user.token}`
+					Authorization: `Bearer ${this.user.token}`,
+					'Content-Type': 'application/json'
 				},
 				method: 'PUT',
 				body: JSON.stringify(body)
@@ -73,7 +77,7 @@ export default defineStore({
 			});
 		},
 		async changePassword(password) {
-			return fetch('http://localhost:2022/editionprofil', {
+			return fetch('/api/editionprofil', {
 				headers: {
 					Authorization: `Bearer ${this.user.token}`
 				},
@@ -88,7 +92,7 @@ export default defineStore({
 			this.user = null;
 		},
 		delete(username) {
-			return fetch('http://localhost:2022/desinscription', {
+			return fetch('/api/desinscription', {
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${(username ?? this.user.username)}`
@@ -100,7 +104,7 @@ export default defineStore({
 			});
 		},
 		listusers() {
-			return fetch('http://localhost:2022/listeusers', {
+			return fetch('/api/listeusers', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${this.user.token}`

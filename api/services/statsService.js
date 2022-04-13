@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('database/qwestion.db');
+const db = new sqlite3.Database('api/database/qwestion.db');
 
 module.exports = class StatsService {
 	static ajoutstat(token, date, api, category, difficulty, correct, incorrect, callback) {
