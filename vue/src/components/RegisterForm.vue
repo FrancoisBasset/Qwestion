@@ -48,18 +48,16 @@ export default {
 	components: {
 		RegisterModal
 	},
-	data() {
-		return {
-			accountStore: useAccountStore(),
-			username: '',
-			password: '',
-			firstname: '',
-			lastname: '',
-			status: '',
-			readonlyUsername: '',
-			usernameToDelete: ''
-		};
-	},
+	data: () => ({
+		accountStore: useAccountStore(),
+		username: '',
+		password: '',
+		firstname: '',
+		lastname: '',
+		status: '',
+		readonlyUsername: '',
+		usernameToDelete: ''
+	}),
 	computed: {
 		correctForm() {
 			return this.username && this.password && this.firstname && this.lastname;
