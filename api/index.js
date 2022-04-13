@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
 const serveStatic = require('serve-static');
+const fs = require('fs');
 
 const app = express();
 app.use(cors());
@@ -18,5 +19,7 @@ router.post('/ajoutstat', require('./functions/ajoutstat'));
 router.get('/listestats', require('./functions/listestats'));
 router.get('/listeusers', require('./functions/listeusers'));
 
-app.use(serveStatic('vue/dist'));
+if (fs.existsSync('vue/dist')) {
+	app.use(serveStatic('vue/dist'));
+}
 app.use('/api', router);
