@@ -7,12 +7,12 @@
 		<br>
 		<br>
 		<label>Nombre de questions : </label>
-		<input type="number" v-model="number" />
+		<input type="number" v-model="number" min="1" max="20" />
 		<br>
 		<br>
 		<label>Catégorie : </label>
 		<select v-model="category">
-			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category">{{ category.name }}</option>
+			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category">{{ category.name ?? category }}</option>
 		</select>
 		<br>
 		<br>
@@ -24,8 +24,8 @@
 		</select>
 		<br>
 		<br>
-		<label>Type : </label>
-		<select v-model="type">
+		<label v-if="apisStore.getCurrentApi().id === 'opentdb'">Type : </label>
+		<select v-if="apisStore.getCurrentApi().id === 'opentdb'" v-model="type">
 			<option value="multiple">Choix multiple</option>
 			<option value="boolean">Vrai / Faux</option>
 		</select>
@@ -69,9 +69,9 @@ export default {
 	},
 	methods: {
 		async play() {
-			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category.id, this.difficulty, this.type);
-			this.gameStore.start(this.apisStore.getCurrentApi().name, this.category.name, this.difficulty, questions);
-
+			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category.id ?? this.category, this.difficulty, this.type);
+			this.gameStore.start(this.apisStore.getCurrentApi().name, this.category.name ?? this.category, this.difficulty, questions);
+			
 			this.$router.push('/jouer');
 		},
 		closeModal() {

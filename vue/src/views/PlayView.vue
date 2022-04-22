@@ -66,8 +66,6 @@ export default {
 	created() {
 		this.category = this.gameStore.category;
 
-		console.log(this.category);
-
 		if (this.category === null) {
 			this.$router.push('/');
 			return;
@@ -87,8 +85,14 @@ export default {
 			
 			this.showAnswer = false;
 			this.question = nextQuestion.question;
-			this.correctAnswer = nextQuestion.correct_answer;
-			this.answers = [nextQuestion.correct_answer, ...nextQuestion.incorrect_answers].sort();
+
+			if (this.gameStore.api === 'Open Trivia Database') {
+				this.correctAnswer = nextQuestion.correct_answer;
+				this.answers = [nextQuestion.correct_answer, ...nextQuestion.incorrect_answers].sort();
+			} else if (this.gameStore.api === 'QuizAPI') {
+				this.correctAnswer = nextQuestion.answers[nextQuestion.correct_answer];
+				this.answers = Object.values(nextQuestion.answers).filter(a => a != null).sort();
+			}
 
 			if (this.gameStore.currentIndex == this.gameStore.questions.length - 1) {
 				this.end = true;
