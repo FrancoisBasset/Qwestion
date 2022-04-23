@@ -16,8 +16,8 @@
 		</select>
 		<br>
 		<br>
-		<label>Difficulté : </label>
-		<select v-model="difficulty">
+		<label v-if="apisStore.getCurrentApi().id !== 'apininjas'">Difficulté : </label>
+		<select v-if="apisStore.getCurrentApi().id !== 'apininjas'" v-model="difficulty">
 			<option value="easy">Facile</option>
 			<option value="medium">Moyen</option>
 			<option value="hard">Difficile</option>
@@ -70,6 +70,10 @@ export default {
 	methods: {
 		async play() {
 			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category.id ?? this.category, this.difficulty, this.type);
+			if (questions.error) {
+				alert(questions.error);
+				return;
+			}
 			this.gameStore.start(this.apisStore.getCurrentApi().name, this.category.name ?? this.category, this.difficulty, questions);
 			
 			this.$router.push('/jouer');

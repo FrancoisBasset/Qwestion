@@ -17,20 +17,29 @@ export default defineStore({
 	},
 	actions: {
 		start(api, category, difficulty, questions) {
+			this.currentIndex = -1;
+			this.correct = 0;
+			this.incorrect = 0;
 			this.api = api;
 			this.category = category;
 			this.difficulty = difficulty;
 			this.questions = questions;
 		},
 		getNextQuestion() {
-			if (this.questions.length == this.currentIndex) {
+			if (this.questions.length === this.currentIndex) {
 				return null;
 			}
 
 			return this.questions[++this.currentIndex];
 		},
 		answer(text) {
-			if (text === this.questions[this.currentIndex].correct_answer) {
+			if (this.api === 'APINinjas') {
+				if (text === this.questions[this.currentIndex].answer) {
+					this.correct++;
+				} else {
+					this.incorrect++;
+				}
+			} else  if (text === this.questions[this.currentIndex].correct_answer) {
 				this.correct++;
 			} else {
 				this.incorrect++;
