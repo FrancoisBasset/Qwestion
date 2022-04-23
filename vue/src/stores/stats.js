@@ -18,7 +18,7 @@ export default defineStore({
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
-						date: new Date().toLocaleString(),
+						date: new Date().toLocaleString().split(',')[0],
 						api: api,
 						category: category,
 						difficulty: difficulty,

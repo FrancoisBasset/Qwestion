@@ -26,5 +26,5 @@ div {
 <script>
 export default {
 	props: ['status', 'username']
-}
+};
 </script>

@@ -45,5 +45,5 @@ export default {
 			style: `font-size: 25px; font-weight: bold;  padding: 20px; background-color: rgb(${r}, ${g}, ${b}); border-radius: 50%`
 		};
 	}
-}
+};
 </script>
