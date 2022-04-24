@@ -39,10 +39,29 @@ export default defineStore({
 				} else {
 					this.incorrect++;
 				}
-			} else  if (text === this.questions[this.currentIndex].correct_answer) {
-				this.correct++;
+			} else if (this.api === 'QuizAPI') {
+				let correctAnswer = this.questions[this.currentIndex].answers[this.questions[this.currentIndex].correct_answer];
+				
+				if (!correctAnswer) {
+					for (const key of Object.keys(this.questions[this.currentIndex].correct_answers)) {
+						if (this.questions[this.currentIndex].correct_answers[key]) {
+							correctAnswer = this.questions[this.currentIndex].answers[key.split('_correct')[0]];
+							break;
+						}
+					}
+				}
+
+				if (text === correctAnswer) {
+					this.correct++;
+				} else {
+					this.incorrect++;
+				}
 			} else {
-				this.incorrect++;
+				if (text === this.questions[this.currentIndex].correct_answer) {
+					this.correct++;
+				} else {
+					this.incorrect++;
+				}
 			}
 		},
 		finish() {

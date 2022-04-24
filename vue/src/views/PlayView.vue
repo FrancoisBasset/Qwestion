@@ -98,7 +98,17 @@ export default {
 				this.correctAnswer = nextQuestion.correct_answer;
 				this.answers = [nextQuestion.correct_answer, ...nextQuestion.incorrect_answers].sort();
 			} else if (this.gameStore.api === 'QuizAPI') {
-				this.correctAnswer = nextQuestion.answers[nextQuestion.correct_answer];
+				if (nextQuestion.correct_answer) {
+					this.correctAnswer = nextQuestion.answers[nextQuestion.correct_answer];
+				} else {
+					for (const key of Object.keys(nextQuestion.correct_answers)) {
+						if (nextQuestion.correct_answers[key]) {
+							this.correctAnswer = nextQuestion.answers[key.split('_correct')[0]];
+							
+							break;
+						}
+					}
+				}
 				this.answers = Object.values(nextQuestion.answers).filter(a => a !== null).sort();
 			} else if (this.gameStore.api === 'APINinjas') {
 				this.correctAnswer = nextQuestion.answer;
