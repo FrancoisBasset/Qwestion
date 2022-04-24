@@ -26,5 +26,5 @@ export default {
 		Header,
 		RegisterForm
 	}
-}
+};
 </script>

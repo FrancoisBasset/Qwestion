@@ -25,5 +25,5 @@ export default {
 		Header,
 		MyProfileForm
 	}
-}
+};
 </script>

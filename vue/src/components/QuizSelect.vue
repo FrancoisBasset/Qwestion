@@ -17,5 +17,5 @@ export default {
 	created() {
 		this.apiId = this.apisStore.getCurrentApi().id;
 	}
-}
+};
 </script>

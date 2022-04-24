@@ -7,7 +7,7 @@
 			<label>{{ category }}</label>
 			<br>
 			<br>
-			<label>Question {{ gameStore.currentIndex + 1 }} / {{ gameStore.questions.length }}</label>
+			<label v-if="gameStore.questions">Question {{ gameStore.currentIndex + 1 }} / {{ gameStore.questions.length }}</label>
 			<br>
 			<br>
 			<label>{{ replaceSpecialChars(question) }}</label>
@@ -15,7 +15,14 @@
 			<br>
 
 			<button @click="clickAnswer(answer)" v-for="answer in answers" :key="answer" style="margin: 20px; width: 300px; font-size: 16px" :style="[showAnswer ? answer === correctAnswer ? 'background-color: green' : answer === selectedAnswer ? 'background-color: red' : '' : '']">{{ replaceSpecialChars(answer) }}</button>
-
+			
+			<label v-if="gameStore.api === 'APINinjas' && !showAnswer">{{ correctAnswer.split(/[a-zA-Z0-9]/).join('.') }}</label>
+			<label v-if="gameStore.api === 'APINinjas' && showAnswer" :style="[selectedAnswer === correctAnswer ? 'color: green' : 'color: red']">{{ correctAnswer }}</label>
+			<br><br>
+			<input type="text" v-if="gameStore.api === 'APINinjas'" v-model="selectedAnswer" />
+			
+			<br>
+			<button v-if="gameStore.api === 'APINinjas'" @click="clickAnswer(selectedAnswer)">Répondre</button>
 			<br>
 			<br>
 			<br>
@@ -66,8 +73,6 @@ export default {
 	created() {
 		this.category = this.gameStore.category;
 
-		console.log(this.category);
-
 		if (this.category === null) {
 			this.$router.push('/');
 			return;
@@ -87,10 +92,30 @@ export default {
 			
 			this.showAnswer = false;
 			this.question = nextQuestion.question;
-			this.correctAnswer = nextQuestion.correct_answer;
-			this.answers = [nextQuestion.correct_answer, ...nextQuestion.incorrect_answers].sort();
+			this.selectedAnswer = '';
 
-			if (this.gameStore.currentIndex == this.gameStore.questions.length - 1) {
+			if (this.gameStore.api === 'Open Trivia Database') {
+				this.correctAnswer = nextQuestion.correct_answer;
+				this.answers = [nextQuestion.correct_answer, ...nextQuestion.incorrect_answers].sort();
+			} else if (this.gameStore.api === 'QuizAPI') {
+				if (nextQuestion.correct_answer) {
+					this.correctAnswer = nextQuestion.answers[nextQuestion.correct_answer];
+				} else {
+					for (const key of Object.keys(nextQuestion.correct_answers)) {
+						if (nextQuestion.correct_answers[key]) {
+							this.correctAnswer = nextQuestion.answers[key.split('_correct')[0]];
+							
+							break;
+						}
+					}
+				}
+				this.answers = Object.values(nextQuestion.answers).filter(a => a !== null).sort();
+			} else if (this.gameStore.api === 'APINinjas') {
+				this.correctAnswer = nextQuestion.answer;
+				this.answers = [];
+			}
+
+			if (this.gameStore.currentIndex === this.gameStore.questions.length - 1) {
 				this.end = true;
 			}
 		},
@@ -100,5 +125,5 @@ export default {
 			this.$router.push('/');
 		}
 	}
-}
+};
 </script>

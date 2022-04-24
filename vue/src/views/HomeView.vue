@@ -14,7 +14,7 @@
 			<PlayButton @click="showStartQuizModal = true" style="width: 300px; height: 100px" />
 			<br>
 			<br>
-			<StatisticsButton style="width: 300px; height: 100px" />
+			<StatisticsButton />
 		</div>
 		<StartQuizModal v-show="showStartQuizModal" @closeModal="showStartQuizModal = false" />
 	</div>
@@ -34,7 +34,8 @@ export default {
 	components: {
 		Header,
 		PlayButton,
-		StatisticsButton
+		StatisticsButton,
+		StartQuizModal
 	},
 	emits: [
 		'closeModal'
