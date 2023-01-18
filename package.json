@@ -17,11 +17,10 @@
 	"homepage": "https://github.com/FrancoisBasset/Qwestion#readme",
 	"scripts": {
 		"lint": "npx eslint ./api ./vue",
-		"postinstall": "npm run build",
-		"start": "node ./api/index.js",
-		"dev": "vite ./vue",
+		"dev": "node ./api/index.js",
+		"devvue": "vite ./vue",
 		"build": "vite build ./vue",
-		"preview": "vite preview --port 5050 ./vue"
+		"preview": "vite preview --port 3000 ./vue"
 	},
 	"dependencies": {
 		"@vueuse/core": "^7.7.1",

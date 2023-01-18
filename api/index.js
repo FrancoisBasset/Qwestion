@@ -2,24 +2,27 @@ const process = require('process');
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
-const serveStatic = require('serve-static');
-const fs = require('fs');
 
 const app = express();
 app.use(cors());
-app.listen(process.env.PORT || 2022);
+app.listen(3000, function() {
+	process.stdout.write('Start on 3000');
+});
+
+const { listeusers, inscription, connexion, editionprofil, desinscription } = require('./controllers/usersController');
+const { listestats, ajoutstat } = require('./controllers/statsController');
 
 const router = express.Router();
-router.use(bodyParser.json({limit: '50mb'}));
-router.post('/inscription', require('./functions/inscription'));
-router.get('/connexion', require('./functions/connexion'));
-router.put('/editionprofil', require('./functions/editionprofil'));
-router.delete('/desinscription', require('./functions/desinscription'));
-router.post('/ajoutstat', require('./functions/ajoutstat'));
-router.get('/listestats', require('./functions/listestats'));
-router.get('/listeusers', require('./functions/listeusers'));
+router.use(bodyParser.json({
+	limit: '50mb'
+}));
+router.get('/listeusers', listeusers);
+router.post('/inscription', inscription);
+router.get('/connexion', connexion);
+router.put('/editionprofil', editionprofil);
+router.delete('/desinscription', desinscription);
 
-if (fs.existsSync('vue/dist')) {
-	app.use(serveStatic('vue/dist'));
-}
+router.get('/listestats', ajoutstat);
+router.post('/ajoutstat', listestats);
+
 app.use('/api', router);
