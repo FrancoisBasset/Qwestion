@@ -9,7 +9,7 @@
 		<label>Mot de passe : </label><input type="password" v-model="password" />
 		<br>
 		<br>
-		<button @click="login()" :disabled="!correctForm">Se connecter</button>
+		<PrimaryButton @click="login()" :disabled="!correctForm">Se connecter</PrimaryButton>
 		<br>
 		<br>
 		<br>
@@ -27,8 +27,12 @@
 
 <script>
 import useAccountStore from '../stores/account';
+import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
+	components: {
+		PrimaryButton
+	},
 	data() {
 		return {
 			accountStore: useAccountStore(),

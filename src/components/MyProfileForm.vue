@@ -20,21 +20,21 @@
 			Vide
 		</div>
 		<br>
-		<button @click="emptyWallpaper()">Vider le fond d'écran</button>
+		<PrimaryButton @click="emptyWallpaper()">Vider le fond d'écran</PrimaryButton>
 		<br>
 		<br>
-		<button @click="register()" :disabled="!correctForm">Enregistrer</button>
+		<PrimaryButton @click="register()" :disabled="!correctForm">Enregistrer</PrimaryButton>
 		<br>
 		<br>
 		<label>Mot de passe : </label><input type="password" v-model="password" />
 		<br>
 		<br>
-		<button @click="changePassword()">Modifier mon mot de passe</button>
+		<PrimaryButton @click="changePassword()">Modifier mon mot de passe</PrimaryButton>
 		<br>
 		<label id="message" ref="message">Modifications sauvegardés !</label>
 		<br>
 		<br>
-		<button id="deleteAccountButton" @click="deleteAccount()">!! Supprimer mon compte !!</button>
+		<PrimaryButton id="deleteAccountButton" @click="deleteAccount()">!! Supprimer mon compte !!</PrimaryButton>
 	</div>
 </template>
 
@@ -58,17 +58,16 @@
 .visible {
 	visibility: visible;
 }
-
-#deleteAccountButton {
-	color: white;
-	background-color: red;
-}
 </style>
 
 <script>
 import useAccountStore from '../stores/account';
+import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
+	components: {
+		PrimaryButton
+	},
 	data() {
 		return {
 			accountStore: useAccountStore(),

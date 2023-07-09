@@ -1,5 +1,9 @@
 <template>
 	<router-link to="connexion" >
-		<button>Se connecter</button>
+		<PrimaryButton>Se connecter</PrimaryButton>
 	</router-link>
 </template>
+
+<script setup>
+import PrimaryButton from './lib/PrimaryButton.vue';
+</script>

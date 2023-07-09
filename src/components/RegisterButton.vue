@@ -1,6 +1,6 @@
 <template>
 	<router-link to="inscription" >
-		<button>Inscription</button>
+		<PrimaryButton>Inscription</PrimaryButton>
 	</router-link>
 </template>
 
@@ -10,3 +10,7 @@ a {
 	color: inherit;
 }
 </style>
+
+<script setup>
+import PrimaryButton from './lib/PrimaryButton.vue';
+</script>

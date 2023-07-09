@@ -1,5 +1,5 @@
 <template>
-	<button @click="logout()">Déconnexion</button>
+	<PrimaryButton @click="logout()">Déconnexion</PrimaryButton>
 </template>
 
 <style scoped>
@@ -10,8 +10,12 @@ button {
 
 <script>
 import useAccountStore from '../stores/account';
+import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
+	components: {
+		PrimaryButton
+	},
 	data() {
 		return {
 			accountStore: useAccountStore()

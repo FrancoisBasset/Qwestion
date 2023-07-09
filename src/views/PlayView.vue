@@ -14,7 +14,7 @@
 			<br>
 			<br>
 
-			<button @click="clickAnswer(answer)" v-for="answer in answers" :key="answer" style="margin: 20px; width: 300px; font-size: 16px" :style="[showAnswer ? answer === correctAnswer ? 'background-color: green' : answer === selectedAnswer ? 'background-color: red' : '' : '']">{{ replaceSpecialChars(answer) }}</button>
+			<PrimaryButton @click="clickAnswer(answer)" v-for="answer in answers" :key="answer" style="margin: 20px; width: 300px; font-size: 16px" :style="[showAnswer ? answer === correctAnswer ? 'background-color: green' : answer === selectedAnswer ? 'background-color: red' : '' : '']">{{ replaceSpecialChars(answer) }}</PrimaryButton>
 			
 			<label v-if="gameStore.api === 'APINinjas' && !showAnswer">{{ correctAnswer.split(/[a-zA-Z0-9]/).join('.') }}</label>
 			<label v-if="gameStore.api === 'APINinjas' && showAnswer" :style="[selectedAnswer === correctAnswer ? 'color: green' : 'color: red']">{{ correctAnswer }}</label>
@@ -22,12 +22,12 @@
 			<input type="text" v-if="gameStore.api === 'APINinjas'" v-model="selectedAnswer" />
 			
 			<br>
-			<button v-if="gameStore.api === 'APINinjas'" @click="clickAnswer(selectedAnswer)">Répondre</button>
+			<PrimaryButton v-if="gameStore.api === 'APINinjas'" @click="clickAnswer(selectedAnswer)">Répondre</PrimaryButton>
 			<br>
 			<br>
 			<br>
-			<button v-if="showAnswer && !end" @click="goToNextQuestion()">Prochaine question</button>
-			<button v-if="showAnswer && end" @click="finish()">Terminer le quiz</button>
+			<PrimaryButton v-if="showAnswer && !end" @click="goToNextQuestion()">Prochaine question</PrimaryButton>
+			<PrimaryButton v-if="showAnswer && end" @click="finish()">Terminer le quiz</PrimaryButton>
 		</div>
 	</div>
 </template>
@@ -40,11 +40,12 @@
 </style>
 
 <script setup>
-import MenuBar from '../components/MenuBar.vue';
 </script>
 
 <script>
 import useGameStore from '../stores/game';
+import MenuBar from '../components/MenuBar.vue';
+import PrimaryButton from '../components/lib/PrimaryButton.vue';
 
 function replaceSpecialChars(input) {
 	input = input.split('&quot;').join('"');
@@ -56,7 +57,8 @@ function replaceSpecialChars(input) {
 
 export default {
 	components: {
-		MenuBar
+		MenuBar,
+		PrimaryButton
 	},
 	data() {
 		return {

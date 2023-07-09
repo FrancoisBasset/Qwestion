@@ -8,7 +8,7 @@
 			<h1>Statistiques</h1>
 			<br>
 
-			<button @click="reload()">Recharger</button>
+			<PrimaryButton @click="reload()">Recharger</PrimaryButton>
 			<br><br><br>
 			<canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 		</div>
@@ -28,15 +28,17 @@ canvas {
 </style>
 
 <script setup>
-import MenuBar from '../components/MenuBar.vue';
 </script>
 
 <script>
 import useStatsStore from '../stores/stats';
+import MenuBar from '../components/MenuBar.vue';
+import PrimaryButton from '../components/lib/PrimaryButton.vue';
 
 export default {
 	components: {
-		MenuBar
+		MenuBar,
+		PrimaryButton
 	},
 	data() {
 		return {

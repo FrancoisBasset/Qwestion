@@ -5,7 +5,7 @@
 		<br>
 		<br>
 		<br>
-		<button @click="$emit('closeRegisterModal')">Fermer</button>
+		<PrimaryButton class="btn btn-primary" @click="$emit('closeRegisterModal')">Fermer</PrimaryButton>
 	</div>
 </template>
 
@@ -24,7 +24,12 @@ div {
 </style>
 
 <script>
+import PrimaryButton from './lib/PrimaryButton.vue';
+
 export default {
+	components: {
+		PrimaryButton
+	},
 	props: ['status', 'username']
 };
 </script>

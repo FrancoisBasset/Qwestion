@@ -15,7 +15,7 @@
 		<label>Nom : </label><input type="text" v-model="lastname" />
 		<br>
 		<br>
-		<button @click="register()" :disabled="!correctForm">S'enregistrer</button>
+		<PrimaryButton @click="register()" :disabled="!correctForm">S'enregistrer</PrimaryButton>
 		<br>
 		<br>
 		<label>Mot de passe oublié ? Voulez-vous supprimer votre compte ?</label>
@@ -24,18 +24,11 @@
 		<input type="text" v-model="usernameToDelete" />
 		<br>
 		<br>
-		<button id="deleteAccountButton" @click="deleteAccount()">Supprimer compte</button>
+		<PrimaryButton id="deleteAccountButton" @click="deleteAccount()">Supprimer compte</PrimaryButton>
 		
 		<RegisterModal v-show="status" @closeRegisterModal="status = null" :status="status" :username="readonlyUsername" />
 	</div>
 </template>
-
-<style scoped>
-#deleteAccountButton {
-	color: white;
-	background-color: red;
-}
-</style>
 
 <script setup>
 import RegisterModal from './RegisterModal.vue';
@@ -43,9 +36,11 @@ import RegisterModal from './RegisterModal.vue';
 
 <script>
 import useAccountStore from '../stores/account';
+import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
 	components: {
+		PrimaryButton,
 		RegisterModal
 	},
 	data: () => ({

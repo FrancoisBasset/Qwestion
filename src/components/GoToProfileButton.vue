@@ -1,6 +1,6 @@
 <template>
 	<router-link to="/monprofil">
-		<button>Mon profil</button>
+		<PrimaryButton>Mon profil</PrimaryButton>
 	</router-link>
 </template>
 
@@ -9,3 +9,7 @@ button {
 	width: 150px;
 }
 </style>
+
+<script setup>
+import PrimaryButton from './lib/PrimaryButton.vue';
+</script>

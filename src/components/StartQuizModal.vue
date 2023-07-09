@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button @click="closeModal()" style="float: right">❌</button>
+		<PrimaryButton @click="closeModal()" style="float: right">❌</PrimaryButton>
 		<br>
 		<br>
 		<br>
@@ -31,7 +31,7 @@
 		</select>
 		<br>
 		<br>
-		<button @click="play()" style="text-align: center">Jouer !</button>
+		<PrimaryButton @click="play()" style="text-align: center">Jouer !</PrimaryButton>
 	</div>
 </template>
 
@@ -52,8 +52,12 @@ div {
 <script>
 import useApisStore from '../stores/apisstore';
 import useGameStore from '../stores/game';
+import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
+	components: {
+		PrimaryButton
+	},
 	data() {
 		return {
 			apisStore: useApisStore(),
