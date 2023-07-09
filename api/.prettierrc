@@ -1,8 +1,0 @@
-{
-	"bracketSameLine": true,
-	"bracketSpacing": true,
-	"arrowParens": "avoid",
-	"embeddedLanguageFormatting": "auto",
-	"semi": true,
-	"singleQuote": true
-}
