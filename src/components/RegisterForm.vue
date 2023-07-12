@@ -24,7 +24,7 @@
 		<input type="text" v-model="usernameToDelete" />
 		<br>
 		<br>
-		<PrimaryButton id="deleteAccountButton" @click="deleteAccount()">Supprimer compte</PrimaryButton>
+		<PrimaryButton @click="deleteAccount()">Supprimer compte</PrimaryButton>
 		
 		<RegisterModal v-show="status" @closeRegisterModal="status = null" :status="status" :username="readonlyUsername" />
 	</div>

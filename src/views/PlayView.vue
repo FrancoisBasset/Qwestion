@@ -1,8 +1,5 @@
 <template>
 	<div>
-		<MenuBar />
-		<br>
-		<br>
 		<div id="playDiv">
 			<label>{{ category }}</label>
 			<br>
@@ -39,12 +36,8 @@
 }
 </style>
 
-<script setup>
-</script>
-
 <script>
 import useGameStore from '../stores/game';
-import MenuBar from '../components/MenuBar.vue';
 import PrimaryButton from '../components/lib/PrimaryButton.vue';
 
 function replaceSpecialChars(input) {
@@ -57,7 +50,6 @@ function replaceSpecialChars(input) {
 
 export default {
 	components: {
-		MenuBar,
 		PrimaryButton
 	},
 	data() {
@@ -83,6 +75,7 @@ export default {
 		this.goToNextQuestion();
 	},
 	methods: {
+		replaceSpecialChars,
 		clickAnswer(answer) {
 			this.selectedAnswer = answer;
 			this.showAnswer = true;

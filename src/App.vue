@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<MenuBar id="menu" />
 		<RouterView />
 	</div>
 </template>
@@ -9,12 +10,21 @@ div {
 	width: inherit;
 	display: block;
 }
+
+#menu {
+	display: block;
+	text-align: center;
+}
 </style>
 
 <script>
 import useAccountStore from './stores/account';
+import MenuBar from './components/MenuBar.vue';
 
 export default {
+	components: {
+		MenuBar
+	},
 	data() {
 		return {
 			accountStore: useAccountStore()

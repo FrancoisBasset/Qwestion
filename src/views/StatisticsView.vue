@@ -1,22 +1,16 @@
 <template>
 	<div>
-		<MenuBar />
-		<br>
+		<h1>Statistiques</h1>
 		<br>
 
-		<div id="statisticsDiv">
-			<h1>Statistiques</h1>
-			<br>
-
-			<PrimaryButton @click="reload()">Recharger</PrimaryButton>
-			<br><br><br>
-			<canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
-		</div>
+		<PrimaryButton @click="reload()">Recharger</PrimaryButton>
+		<br><br><br>
+		<canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
 	</div>
 </template>
 
 <style scoped>
-#statisticsDiv {
+div {
 	display: block;
 	text-align: center;
 }
@@ -27,17 +21,12 @@ canvas {
 }
 </style>
 
-<script setup>
-</script>
-
 <script>
 import useStatsStore from '../stores/stats';
-import MenuBar from '../components/MenuBar.vue';
 import PrimaryButton from '../components/lib/PrimaryButton.vue';
 
 export default {
 	components: {
-		MenuBar,
 		PrimaryButton
 	},
 	data() {

@@ -1,5 +1,7 @@
 <template>
-	<PrimaryButton @click="goToConsoleAdmin()">Console Admin</PrimaryButton>
+	<router-link to="/admin">
+		<PrimaryButton>Console Admin</PrimaryButton>
+	</router-link>
 </template>
 
 <style scoped>
@@ -8,17 +10,6 @@ button {
 }
 </style>
 
-<script>
+<script setup>
 import PrimaryButton from './lib/PrimaryButton.vue';
-
-export default {
-	components: {
-		PrimaryButton
-	},
-	methods: {
-		goToConsoleAdmin() {
-			this.$router.push('/admin');
-		}
-	}
-};
 </script>

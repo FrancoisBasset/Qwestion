@@ -1,13 +1,11 @@
 const fs = require('fs');
 const sqlite3 = require('sqlite3');
+require('dotenv').config();
 
 if (fs.existsSync('db/qwestion.db')) {
 	fs.unlinkSync('db/qwestion.db');
 }
 
-const dump = (db, file) => db.exec(fs.readFileSync(file).toString());
-
-const db = new sqlite3.Database('./db/qwestion.db', () => {
-	dump(db, './db/users.sql');
-	dump(db, './db/stats.sql');
-});
+const db = new sqlite3.Database('./db/qwestion.db');
+db.exec(require('./users'));
+db.exec(require('./stats'));

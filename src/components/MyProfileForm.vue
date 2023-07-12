@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<h1>Mon profil</h1>
+		<br>
+		<br>
 		<label>Nom d'utilisateur : </label><input type="text" v-model="username" disabled="disabled" />
 		<br>
 		<br>
@@ -34,7 +37,7 @@
 		<label id="message" ref="message">Modifications sauvegardés !</label>
 		<br>
 		<br>
-		<PrimaryButton id="deleteAccountButton" @click="deleteAccount()">!! Supprimer mon compte !!</PrimaryButton>
+		<PrimaryButton @click="deleteAccount()">!! Supprimer mon compte !!</PrimaryButton>
 	</div>
 </template>
 

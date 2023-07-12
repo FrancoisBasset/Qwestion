@@ -1,4 +1,4 @@
-CREATE TABLE "stats" (
+module.exports = `CREATE TABLE "stats" (
 	"id"			INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	"userId"		INTEGER NOT NULL,
 	"date"			TEXT NOT NULL,
@@ -9,4 +9,4 @@ CREATE TABLE "stats" (
 	"incorrect"		INTEGER NOT NULL,
 	
 	FOREIGN KEY("userId") REFERENCES "users"("id")
-)
+)`;

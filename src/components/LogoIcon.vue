@@ -6,13 +6,13 @@
 
 <style scoped>
 a, label {
-	color: greenyellow;
-	font-size: 44px;
+	color: white;
+	font-size: 25px;
 
-	background-color: lime;
+	background-color: rgb(110, 224, 186);
 
-	border-radius: 20px;
-	padding: 10px;
+	border-radius: 10px;
+	padding: 2px;
 
 	cursor: pointer;
 	text-decoration: none;

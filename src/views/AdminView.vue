@@ -1,9 +1,5 @@
 <template>
 	<div>
-		<MenuBar />
-		<br>
-		<br>
-
 		<div v-if="canAccess" class="center">
 			<h1>Liste des utilisateurs</h1>
 			<br>
@@ -38,7 +34,6 @@
 		<div v-else class="center">
 			<h1>Ouste !</h1>
 		</div>
-
 	</div>
 </template>
 
@@ -54,17 +49,12 @@ table {
 }
 </style>
 
-<script setup>
-</script>
-
 <script>
 import useAccountStore from '../stores/account';
-import MenuBar from '../components/MenuBar.vue';
 import PrimaryButton from '../components/lib/PrimaryButton.vue';
 
 export default {
 	components: {
-		MenuBar,
 		PrimaryButton
 	},
 	data() {

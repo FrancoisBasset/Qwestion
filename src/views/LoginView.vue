@@ -1,30 +1,16 @@
 <template>
 	<div>
-		<MenuBar />
-		<br>
-		<br>
-
-		<LoginForm id="loginForm" />
+		<LoginForm />
 	</div>
 </template>
 
 <style scoped>
-#loginForm {
+div {
 	display: block;
 	text-align: center;
 }
 </style>
 
 <script setup>
-import MenuBar from '../components/MenuBar.vue';
 import LoginForm from '../components/LoginForm.vue';
-</script>
-
-<script>
-export default {
-	components: {
-		MenuBar,
-		LoginForm
-	}
-};
 </script>

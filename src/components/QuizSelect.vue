@@ -1,5 +1,5 @@
 <template>
-	<select v-model="apiId" @change="apisStore.setCurrentApi(apiId)">
+	<select class="form-select" v-model="apiId" @change="apisStore.setCurrentApi(apiId)">
 		<option v-for="api in apisStore.apis" :key="api.id" :value="api.id">{{ api.name }}</option>
 	</select>
 </template>
