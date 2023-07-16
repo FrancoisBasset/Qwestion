@@ -1,45 +1,34 @@
 <template>
 	<div>
 		<h1>Inscription</h1>
-		<br>
-		<br>
-		<label>Nom d'utilisateur : </label><input type="text" v-model="username" />
-		<br>
-		<br>
-		<label>Mot de passe : </label><input type="password" v-model="password" />
-		<br>
-		<br>
-		<label>Prénom : </label><input type="text" v-model="firstname" />
-		<br>
-		<br>
-		<label>Nom : </label><input type="text" v-model="lastname" />
-		<br>
-		<br>
+		
+		<InputText type="text" v-model="username">Nom d'utilisateur</InputText>
+		
+		<InputText type="password" v-model="password">Mot de passe</InputText>
+		
+		<InputText type="text" v-model="firstname">Prénom</InputText>
+		
+		<InputText type="text" v-model="lastname">Nom</InputText>
+		
 		<PrimaryButton @click="register()" :disabled="!correctForm">S'enregistrer</PrimaryButton>
-		<br>
-		<br>
-		<label>Mot de passe oublié ? Voulez-vous supprimer votre compte ?</label>
-		<br>
-		<br>
-		<input type="text" v-model="usernameToDelete" />
-		<br>
-		<br>
+
+		<InputText type="text" v-model="usernameToDelete">Mot de passe oublié ? Voulez-vous supprimer votre compte ?</InputText>
+		
 		<PrimaryButton @click="deleteAccount()">Supprimer compte</PrimaryButton>
 		
 		<RegisterModal v-show="status" @closeRegisterModal="status = null" :status="status" :username="readonlyUsername" />
 	</div>
 </template>
 
-<script setup>
-import RegisterModal from './RegisterModal.vue';
-</script>
-
 <script>
 import useAccountStore from '../stores/account';
+import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
+import RegisterModal from './RegisterModal.vue';
 
 export default {
 	components: {
+		InputText,
 		PrimaryButton,
 		RegisterModal
 	},

@@ -1,16 +1,13 @@
 <template>
 	<div>
-		<h1>Se connecter</h1>
-		<br>
-		<br>
-		<label>Nom d'utilisateur : </label><input type="text" v-model="username" />
-		<br>
-		<br>
-		<label>Mot de passe : </label><input type="password" v-model="password" />
-		<br>
-		<br>
+		<h1>Connexion</h1>
+
+		<InputText type="text" v-model="username">Nom d'utilisateur</InputText>
+		
+		<InputText type="password" v-model="password">Mot de passe</InputText>
+
 		<PrimaryButton @click="login()" :disabled="!correctForm">Se connecter</PrimaryButton>
-		<br>
+		
 		<br>
 		<br>
 		<label id="message" v-show="incorrectLogin">Identifiants incorrects !</label>
@@ -27,10 +24,12 @@
 
 <script>
 import useAccountStore from '../stores/account';
+import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
 	components: {
+		InputText,
 		PrimaryButton
 	},
 	data() {

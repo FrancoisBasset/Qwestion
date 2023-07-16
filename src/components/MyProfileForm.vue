@@ -1,21 +1,17 @@
 <template>
 	<div>
 		<h1>Mon profil</h1>
-		<br>
-		<br>
-		<label>Nom d'utilisateur : </label><input type="text" v-model="username" disabled="disabled" />
-		<br>
-		<br>
-		<label>Prénom : </label><input type="text" v-model="firstname" />
-		<br>
-		<br>
-		<label>Nom : </label><input type="text" v-model="lastname" />
-		<br>
-		<br>
-		<label>QuizAPI token : </label><input type="text" v-model="quizApiToken" />
-		<br>
-		<br>
-		<label>ApiNinjas token : </label><input type="text" v-model="apiNinjasToken" />
+		
+		<InputText type="text" v-model="username" disabled="disabled">Nom d'utilisateur</InputText>
+		
+		<InputText type="text" v-model="firstname">Prénom</InputText>
+		
+		<InputText type="text" v-model="lastname">Nom</InputText>
+
+		<InputText type="text" v-model="quizApiToken">QuizAPI token</InputText>
+		
+		<InputText type="text" v-model="apiNinjasToken">ApiNinjas token</InputText>
+		
 		<br>
 		<input type="file" id="inputFile" @change="pickWallpaper($event)" style="visibility: hidden" ><br>
 		<img v-if="wallpaper" id="wallpaper" @click="clickOnPicker()" alt="wallpaper" :src="wallpaper" width="300" height="200" />
@@ -27,17 +23,14 @@
 		<br>
 		<br>
 		<PrimaryButton @click="register()" :disabled="!correctForm">Enregistrer</PrimaryButton>
-		<br>
-		<br>
-		<label>Mot de passe : </label><input type="password" v-model="password" />
-		<br>
-		<br>
+
+		<InputText type="password" v-model="password">Mot de passe</InputText>
+		
 		<PrimaryButton @click="changePassword()">Modifier mon mot de passe</PrimaryButton>
-		<br>
-		<label id="message" ref="message">Modifications sauvegardés !</label>
-		<br>
-		<br>
-		<PrimaryButton @click="deleteAccount()">!! Supprimer mon compte !!</PrimaryButton>
+
+		<AlertMessage v-if="saved">Modifications sauvegardés !</AlertMessage>
+
+		<DangerButton @click="deleteAccount()">!! Supprimer mon compte !!</DangerButton>
 	</div>
 </template>
 
@@ -50,26 +43,21 @@
 	margin-right: auto;
 	cursor: pointer;
 }
-
-#message {
-	padding: 20px;
-	background-color: seagreen;
-	color: white;
-	visibility: hidden;
-}
-
-.visible {
-	visibility: visible;
-}
 </style>
 
 <script>
 import useAccountStore from '../stores/account';
+import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
+import DangerButton from './lib/DangerButton.vue';
+import AlertMessage from './AlertMessage.vue';
 
 export default {
 	components: {
-		PrimaryButton
+		InputText,
+		PrimaryButton,
+		DangerButton,
+		AlertMessage
 	},
 	data() {
 		return {
@@ -82,6 +70,7 @@ export default {
 			apiNinjasToken: '',
 			wallpaper: '',
 			status: '',
+			saved: false
 		};
 	},
 	created() {
@@ -101,9 +90,9 @@ export default {
 	methods: {
 		async register() {
 			await this.accountStore.editAccount(this.firstname, this.lastname, this.quizApiToken, this.apiNinjasToken, this.wallpaper);
-			this.$refs.message.style.visibility = 'visible';
+			this.saved = true;
 			setTimeout(() => {
-				this.$refs.message.style.visibility = 'hidden';
+				this.saved = false;
 			}, 5000);
 		},
 		clickOnPicker() {
@@ -123,9 +112,9 @@ export default {
 		},
 		async changePassword() {
 			await this.accountStore.changePassword(this.password);
-			this.$refs.message.style.visibility = 'visible';
+			this.saved = true;
 			setTimeout(() => {
-				this.$refs.message.style.visibility = 'hidden';
+				this.saved = false;
 			}, 5000);
 		},
 		async deleteAccount() {

@@ -6,14 +6,11 @@
 	</div>
 </template>
 
-<script setup>
+<script>
+import useAccountStore from '../stores/account';
 import GoToProfileButton from './GoToProfileButton.vue';
 import GoToConsoleAdminButton from './GoToConsoleAdminButton.vue';
 import LogoutButton from './LogoutButton.vue';
-</script>
-
-<script>
-import useAccountStore from '../stores/account';
 
 export default {
 	components: {

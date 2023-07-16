@@ -1,15 +1,10 @@
 <template>
-	<div>
+	<div id="modal">
 		<PrimaryButton @click="closeModal()" style="float: right">❌</PrimaryButton>
 		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<label>Nombre de questions : </label>
-		<input type="number" v-model="number" min="1" max="20" />
-		<br>
-		<br>
+
+		<InputText style="display: block" type="number" v-model="number" min="1" max="20">Nombre de questions</InputText>
+		
 		<label>Catégorie : </label>
 		<select v-model="category">
 			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category">{{ category.name ?? category }}</option>
@@ -31,12 +26,12 @@
 		</select>
 		<br>
 		<br>
-		<PrimaryButton @click="play()" style="text-align: center">Jouer !</PrimaryButton>
+		<PrimaryButton @click="play()" class="center">Jouer !</PrimaryButton>
 	</div>
 </template>
 
 <style scoped>
-div {
+#modal {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -47,15 +42,23 @@ div {
 	background: rgba(230, 230, 230, 1);
 	display: block
 }
+
+.center {
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+}
 </style>
 
 <script>
 import useApisStore from '../stores/apisstore';
 import useGameStore from '../stores/game';
+import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
 
 export default {
 	components: {
+		InputText,
 		PrimaryButton
 	},
 	data() {

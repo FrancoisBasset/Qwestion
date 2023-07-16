@@ -1,6 +1,6 @@
 <template>
-	<div class='dropdown'>
-		<label :style="style" >{{ firstname[0] + lastname[0] }}</label>
+	<div class="dropdown">
+		<label class="icon" >{{ firstname[0] + lastname[0] }}</label>
 		<ProfileModal class="dropdown-content" />
 	</div>
 </template>
@@ -21,29 +21,28 @@ label {
 .dropdown-content {
 	display: none;
 	position: absolute;
-	margin-top: 70px;
+	margin-top: 45px;
 	right: 0px;
+}
+
+.icon {
+	width: 50px;
+	height: 50px;
+	font-size: 20px;
+	padding-top: 10px;
+	font-weight: bold;
+	background-color: gainsboro;
+	border-radius: 50%;
 }
 </style>
 
-<script setup>
-import ProfileModal from './ProfileModal.vue';
-</script>
-
 <script>
-const r = Math.floor(Math.random() * 250);
-const g = Math.floor(Math.random() * 250);
-const b = Math.floor(Math.random() * 250);
+import ProfileModal from './ProfileModal.vue';
 
 export default {
 	components: {
 		ProfileModal
 	},
 	props: ['firstname', 'lastname'],
-	data() {
-		return {
-			style: `font-size: 25px; font-weight: bold;  padding: 20px; background-color: rgb(${r}, ${g}, ${b}); border-radius: 50%`
-		};
-	}
 };
 </script>

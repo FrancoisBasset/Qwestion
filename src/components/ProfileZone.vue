@@ -8,14 +8,11 @@
 	</div>
 </template>
 
-<script setup>
+<script>
+import useAccountStore from '../stores/account';
 import RegisterButton from './RegisterButton.vue';
 import LoginButton from './LoginButton.vue';
 import ProfileIcon from './ProfileIcon.vue';
-</script>
-
-<script>
-import useAccountStore from '../stores/account';
 
 export default {
 	components: {
