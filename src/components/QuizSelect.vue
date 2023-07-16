@@ -1,13 +1,17 @@
 <template>
-	<select class="form-select" v-model="apiId" @change="apisStore.setCurrentApi(apiId)">
+	<SelectForm v-model="apiId" @change="apisStore.setCurrentApi(apiId)">
 		<option v-for="api in apisStore.apis" :key="api.id" :value="api.id">{{ api.name }}</option>
-	</select>
+	</SelectForm>
 </template>
 
 <script>
 import useApisStore from '../stores/apisstore';
+import SelectForm from './lib/SelectForm.vue';
 
 export default {
+	components: {
+		SelectForm
+	},
 	data() {
 		return {
 			apisStore: useApisStore(),

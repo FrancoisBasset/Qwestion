@@ -50,7 +50,7 @@ import useAccountStore from '../stores/account';
 import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
 import DangerButton from './lib/DangerButton.vue';
-import AlertMessage from './AlertMessage.vue';
+import AlertMessage from './lib/AlertMessage.vue';
 
 export default {
 	components: {
