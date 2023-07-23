@@ -16,7 +16,10 @@
 		
 		<PrimaryButton @click="deleteAccount()">Supprimer compte</PrimaryButton>
 		
-		<RegisterModal v-show="status" @closeRegisterModal="status = null" :status="status" :username="readonlyUsername" />
+		<AlertMessage v-show="status" :success="status === 201">
+			<text v-if="status === 201">Le compte {{ readonlyUsername }} a bien été crée !</text>
+			<text v-else-if="status === 400">Ce compte existe déjà !</text>
+		</AlertMessage>
 	</div>
 </template>
 
@@ -24,13 +27,13 @@
 import useAccountStore from '../stores/account';
 import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
-import RegisterModal from './RegisterModal.vue';
+import AlertMessage from './lib/AlertMessage.vue';
 
 export default {
 	components: {
 		InputText,
 		PrimaryButton,
-		RegisterModal
+		AlertMessage
 	},
 	data: () => ({
 		accountStore: useAccountStore(),
@@ -47,7 +50,6 @@ export default {
 			return this.username && this.password && this.firstname && this.lastname;
 		}
 	},
-	emits: ['closeRegisterModal'],
 	methods: {
 		async register() {
 			this.readonlyUsername = this.username;
@@ -59,6 +61,10 @@ export default {
 				this.firstname = '';
 				this.lastname = '';
 			}
+
+			setTimeout(() => {
+				this.status = null;
+			}, 5000);
 		},
 		async deleteAccount() {
 			await this.accountStore.delete(this.usernameToDelete);

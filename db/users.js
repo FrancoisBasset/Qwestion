@@ -13,5 +13,5 @@ module.exports = `CREATE TABLE "users" (
 	"wallpaper"			BLOB
 );
 
-INSERT INTO users (username, password, firstname, lastname) VALUES("admin", "${hash}", "Admin", "istrateur");
+INSERT INTO users (username, password, firstname, lastname, quizApiToken) VALUES("admin", "${hash}", "Admin", "Istrateur", "${process.env.ADMIN_QUIZ_API}");
 `;

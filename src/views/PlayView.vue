@@ -20,9 +20,8 @@
 			
 			<br>
 			<PrimaryButton v-if="gameStore.api === 'APINinjas'" @click="clickAnswer(selectedAnswer)">Répondre</PrimaryButton>
-			<br>
-			<br>
-			<br>
+			
+			
 			<PrimaryButton v-if="showAnswer && !end" @click="goToNextQuestion()">Prochaine question</PrimaryButton>
 			<PrimaryButton v-if="showAnswer && end" @click="finish()">Terminer le quiz</PrimaryButton>
 		</div>
@@ -67,7 +66,7 @@ export default {
 	created() {
 		this.category = this.gameStore.category;
 
-		if (this.category === null) {
+		if (this.category === null || this.gameStore.questions.length == 0) {
 			this.$router.push('/');
 			return;
 		}

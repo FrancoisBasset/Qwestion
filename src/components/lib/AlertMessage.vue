@@ -1,5 +1,5 @@
 <template>
-	<label>
+	<label :style="{backgroundColor: success ? 'seagreen' : 'red'}">
 		<slot></slot>
 	</label>
 </template>
@@ -10,7 +10,14 @@ label {
 	bottom: 10px;
 	right: 10px;
 	padding: 20px;
-	background-color: seagreen;
 	color: white;
 }
 </style>
+
+<script>
+export default {
+	props: [
+		'success'
+	]
+};
+</script>

@@ -1,29 +1,30 @@
 <template>
-	<div id="modal">
-		<PrimaryButton @click="closeModal()" style="float: right">❌</PrimaryButton>
-		<br>
+	<div>
+		<div id="modal">
+			<PrimaryButton @click="closeModal()" style="float: right">❌</PrimaryButton>
+			<br>
 
-		<InputText style="display: block" type="number" v-model="number" min="1" max="20">Nombre de questions</InputText>
-		
-		<label>Catégorie : </label>
-		<SelectForm v-model="category" class="mb-4">
-			<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category">{{ category.name ?? category }}</option>
-		</SelectForm>
-		
-		<label v-if="apisStore.getCurrentApi().id !== 'apininjas'">Difficulté : </label>
-		<SelectForm v-if="apisStore.getCurrentApi().id !== 'apininjas'" v-model="difficulty" class="mb-4">
-			<option value="easy">Facile</option>
-			<option value="medium">Moyen</option>
-			<option value="hard">Difficile</option>
-		</SelectForm>
-		
-		<label v-if="apisStore.getCurrentApi().id === 'opentdb'">Type : </label>
-		<SelectForm v-if="apisStore.getCurrentApi().id === 'opentdb'" v-model="type" class="mb-4">
-			<option value="multiple">Choix multiple</option>
-			<option value="boolean">Vrai / Faux</option>
-		</SelectForm>
-		
-		<PrimaryButton @click="play()" class="center">Jouer !</PrimaryButton>
+			<InputText style="display: block" type="number" v-model="number" min="1" max="20">Nombre de questions</InputText>
+			
+			<SelectForm v-model="category" label="Catégorie">
+				<option v-for="category in apisStore.getCurrentApi().store.categories" :key="category" :value="category.id ?? category">{{ category.name ?? category }}</option>
+			</SelectForm>
+			
+			<SelectForm v-if="apisStore.getCurrentApi().id !== 'apininjas'" v-model="difficulty" label="Difficulté">
+				<option value="easy">Facile</option>
+				<option value="medium">Moyen</option>
+				<option value="hard">Difficile</option>
+			</SelectForm>
+			
+			<SelectForm v-if="apisStore.getCurrentApi().id === 'opentdb'" v-model="type" label="Type">
+				<option value="multiple">Choix multiple</option>
+				<option value="boolean">Vrai / Faux</option>
+			</SelectForm>
+			
+			<PrimaryButton @click="play()" class="center">Jouer !</PrimaryButton>
+		</div>
+
+		<AlertMessage v-show="error" :success="false">{{ error }}</AlertMessage>
 	</div>
 </template>
 
@@ -55,12 +56,14 @@ import useGameStore from '../stores/game';
 import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
 import SelectForm from './lib/SelectForm.vue';
+import AlertMessage from './lib/AlertMessage.vue';
 
 export default {
 	components: {
 		InputText,
 		PrimaryButton,
-		SelectForm
+		SelectForm,
+		AlertMessage
 	},
 	data() {
 		return {
@@ -70,6 +73,7 @@ export default {
 			difficulty: 'easy',
 			type: 'multiple',
 			gameStore: useGameStore(),
+			error: null
 		};
 	},
 	created() {
@@ -79,7 +83,10 @@ export default {
 		async play() {
 			const questions = await this.apisStore.getCurrentApi().store.getNewQuestions(this.number, this.category.id ?? this.category, this.difficulty, this.type);
 			if (questions.error) {
-				alert(questions.error);
+				this.error = questions.error;
+				setTimeout(() => {
+					this.error = null;
+				}, 5000);
 				return;
 			}
 			this.gameStore.start(this.apisStore.getCurrentApi().name, this.category.name ?? this.category, this.difficulty, questions);

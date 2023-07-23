@@ -8,9 +8,7 @@
 
 		<PrimaryButton @click="login()" :disabled="!correctForm">Se connecter</PrimaryButton>
 		
-		<br>
-		<br>
-		<label id="message" v-show="incorrectLogin">Identifiants incorrects !</label>
+		<AlertMessage v-show="incorrectLogin" :success="false">Identifiants incorrects !</AlertMessage>
 	</div>	
 </template>
 
@@ -26,11 +24,13 @@
 import useAccountStore from '../stores/account';
 import InputText from './lib/InputText.vue';
 import PrimaryButton from './lib/PrimaryButton.vue';
+import AlertMessage from './lib/AlertMessage.vue';
 
 export default {
 	components: {
 		InputText,
-		PrimaryButton
+		PrimaryButton,
+		AlertMessage
 	},
 	data() {
 		return {

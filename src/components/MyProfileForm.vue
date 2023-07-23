@@ -28,7 +28,7 @@
 		
 		<PrimaryButton @click="changePassword()">Modifier mon mot de passe</PrimaryButton>
 
-		<AlertMessage v-if="saved">Modifications sauvegardés !</AlertMessage>
+		<AlertMessage v-if="saved" success="true">Modifications sauvegardés !</AlertMessage>
 
 		<DangerButton @click="deleteAccount()">!! Supprimer mon compte !!</DangerButton>
 	</div>
@@ -86,7 +86,6 @@ export default {
 			return this.firstname && this.lastname;
 		}
 	},
-	emits: ['closeRegisterModal'],
 	methods: {
 		async register() {
 			await this.accountStore.editAccount(this.firstname, this.lastname, this.quizApiToken, this.apiNinjasToken, this.wallpaper);

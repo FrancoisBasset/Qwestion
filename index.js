@@ -10,7 +10,7 @@ app.listen(3000, function() {
 });
 
 const { listeusers, inscription, connexion, editionprofil, desinscription } = require('./controllers/usersController');
-const { listestats, ajoutstat } = require('./controllers/statsController');
+const { getStats, addStat } = require('./controllers/statsController');
 
 const router = express.Router();
 router.use(bodyParser.json({
@@ -22,7 +22,7 @@ router.get('/connexion', connexion);
 router.put('/editionprofil', editionprofil);
 router.delete('/desinscription', desinscription);
 
-router.get('/listestats', ajoutstat);
-router.post('/ajoutstat', listestats);
+router.get('/stats', getStats);
+router.post('/stats', addStat);
 
 app.use('/api', router);

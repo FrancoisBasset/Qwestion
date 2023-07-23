@@ -11,7 +11,7 @@ export default defineStore({
 	actions: {
 		addStat(api, category, difficulty, correct, incorrect) {
 			if (this.user) {
-				fetch('/api/ajoutstat', {
+				fetch('/api/stats', {
 					method: 'POST',
 					headers: {
 						Authorization: `Bearer ${this.user.token}`,
@@ -29,7 +29,7 @@ export default defineStore({
 			}
 		},
 		getStats() {
-			return fetch('/api/listestats', {
+			return fetch('/api/stats', {
 				headers: {
 					Authorization: `Bearer ${this.user.token}`
 				}
